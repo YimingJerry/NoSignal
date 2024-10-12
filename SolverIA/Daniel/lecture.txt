@@ -1,0 +1,23 @@
+Explication :
+
+1 ) Structures de données :
+
+    -Node: Représente un nœud dans l'arbre général. Chaque nœud contient une lettre (data) et un tableau de pointeurs vers ses enfants (children), un pour chaque lettre de l'alphabet.
+    -Grid: Représente la grille de lettres en tant que liste de listes. data est un tableau de pointeurs vers des lignes, chaque ligne étant un tableau de caractères. rows et cols stockent le nombre de lignes et de colonnes de la grille.
+
+2 ) Fonctions :
+
+    -createNode(): Crée un nouveau nœud de l'arbre général.
+    -insertWord(): Insère un mot dans l'arbre général en créant des nœuds pour chaque lettre du mot.
+    -readGridFromFile(): Lit la grille de lettres à partir d'un fichier image. Vous devrez implémenter cette fonction en fonction de votre bibliothèque d'images.
+    -readWordsFromFile(): Lit les mots à partir d'un fichier texte.
+    -main(): La fonction principale qui lit la grille de lettres et les mots, construit l'arbre général et affiche les données.
+
+
+Remplacez les commentaires // ... par votre propre code pour :
+
+    -Lire la grille de lettres à partir du fichier image (en utilisant une bibliothèque d'images).
+    -Afficher l'arbre général (vous pouvez utiliser une fonction récursive pour cela).
+    -Libérer la mémoire allouée pour les structures de données.
+
+N'oubliez pas d'adapter le code en fonction de vos besoins spécifiques et de votre bibliothèque d'images.

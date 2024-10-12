@@ -1,0 +1,11 @@
+Explications :
+
+    -readGridFromFile : Cette fonction est un exemple de comment vous pouvez lire la grille de lettres à partir d'une image. Le code réel pour extraire les lettres de l'image et déterminer la taille de la grille dépendra de la bibliothèque de traitement d'images que vous utilisez.
+    -newNode : Cette fonction crée un nouveau nœud pour l'arbre de mots.
+    -insertWord : Cette fonction insère un mot dans l'arbre.
+    -main : La fonction main lit la grille de lettres à partir de l'image, crée l'arbre de mots et affiche la grille et l'arbre.
+
+Remarques :
+
+    -Ce code est un exemple et ne peut pas être compilé directement. Vous devez fournir le code réel pour readGridFromFile en fonction de la bibliothèque de traitement d'images que vous utilisez.
+    -J'ai utilisé une structure d'arbre simple pour la représentation des mots. Vous pouvez utiliser d'autres structures de données plus efficaces pour la recherche de mots, telles que les tableaux de hachage ou les automates finis.
