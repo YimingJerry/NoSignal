@@ -4,7 +4,7 @@
 int direction[8][2] = { {0,1}, {1,1}, {1,0}, {1,-1}, {0,-1}, {-1,-1}, {-1,0}, {-1,1}};
 
 
-void Check(char* grid[], char word_list[][]/*le type de word_list sera un arbre*/, int i, int j,int i_diff, int j_diff int direction, int moves[][])
+void Check(char* grid[], char word_list[][]/*le type de word_list sera un arbre*/, int i, int j,int i_diff, int j_diff, int direction, int moves[][])
 {
     int longueur_grid = len(grid);
     int largeur_grid = len(grid[0]);
