@@ -8,7 +8,8 @@ typedef struct Node {
 } Node;
 
 // Fonction pour créer un nouveau nœud
-Node* newNode(char letter) {
+Node* newNode(char letter) 
+{
     Node* node = (Node*)malloc(sizeof(Node));
     node->letter = letter;
     for (int i = 0; i < 26; i++) {

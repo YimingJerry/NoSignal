@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/yann_/PROJET_S3/NoSignal/SolverIA/Daniel",
-      "program": "c:/Users/yann_/PROJET_S3/NoSignal/SolverIA/Daniel/build/Debug/outDebug",
+      "cwd": "c:/Users/yann_/PROJET_S3/NoSignal/SolverIA",
+      "program": "c:/Users/yann_/PROJET_S3/NoSignal/SolverIA/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "C:/MinGW/bin/gdb.exe",
       "setupCommands": [
