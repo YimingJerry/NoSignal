@@ -6,23 +6,15 @@ int main()
 {
     char* grid[3] = 
     {
-        "LOL",
+        "LIL",
         "XUV",
         "WTM"
     };
 
-    char* words[2] = {"XU","LX"};
-
-    //printf("%d",sizeof(grid)/sizeof(grid[0])); it works
-    //printf("%d",sizeof(grid[0])); it works
+    char* words = "LX";
 
     /*printf("\n");
     printf("%c\n",grid[0][1]); // idea for the placement of the letters*/
-
-    //printf("%d\n",(sizeof(words)/sizeof(words[0])));
-
-    //printf("%d\n", WordStartWith(words, "L")); //it works
-
     // printf("%d\n", WordStartWithLetter(words, 'L')); // it works
     
     /*Delete(words, "LOL");
@@ -39,7 +31,7 @@ int main()
     /*check(grid,words,0,0,0,1,moves,0); // right direction;
     printf("\n");*/
 
-    Place* res = solve(grid,words);
+    Place res = solve(grid,words);
     
     return 0;
 }

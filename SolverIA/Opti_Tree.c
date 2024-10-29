@@ -3,24 +3,22 @@
 #include <stdlib.h>
 #include <string.h>
 
-<<<<<<< HEAD
-Place* solve(char* grid[], char* words[])
+Place solve(char* grid[], char* words)
 {
     int directions[8][2] = {{0,1},{1,1},{1,0},{1,-1},{0,-1},{-1,-1},{-1,0},{-1,1}};
-    Place moves[(sizeof(words)/sizeof(words[0])*4 * sizeof(int))+1];
-    size_t index = 0;
+    Place moves;
     //printf("%d\n", (sizeof(grid)/sizeof(grid[0]) + 1));
-    for(size_t i =0; i <= (sizeof(grid)/sizeof(grid[0]) + 1); i++)
+    for(size_t i =0; i <= (sizeof(grid)/sizeof(grid[0])) + 1; i++)
     {
         //printf("%d\n",strlen(grid[i]));
         for(size_t j = 0; j < strlen(grid[i]) ; j++)
         {
             //printf("%d + %c\n", WordStartWithLetter(words, grid[i][j]), grid[i][j]);
-            if(WordStartWithLetter(words, grid[i][j]))
+            if(WordStartWith(words, grid[i],0))
             {
                 for(size_t x = 0; x < 8; x++)
                 {
-                    check(grid, words, i, j, directions[x][0], directions[x][1], moves, index);
+                    check(grid, words, i, j, directions[x][0], directions[x][1], moves);
                 }
             }
         }
@@ -166,6 +164,9 @@ Node* Opti_Tree(Node* Tree, char** word_list)
         }
     }
 
+
+
+
 <<<<<<< HEAD
     optitree = optitree2; //on revient au noeud racine NULL(le tout premier noeud)
     Tree = optitree; //On donne le Tree optimisé au Tree non-opti
@@ -175,7 +176,7 @@ Node* Opti_Tree(Node* Tree, char** word_list)
     /*Tree = optitree; /*On donne le Tree optimisé au Tree non-opti*/
     /*return NULL;
 }*/
-
+/*
 Node* newNode(char letter) 
 {
     Node* node = (Node*)malloc(sizeof(Node));
@@ -273,6 +274,7 @@ int main()
 }
 */
 
+/*
 
 void Affichage(Node* tree, char* buffer, int depth) {
     if (tree == NULL) {
@@ -322,7 +324,7 @@ int main() {
 
     return 0;
 }
-
+*/
 /*Je pense que le problème est que nous ne traitons pas la première liste séparement. Dans la fonction le premier fils
 sera vide puisque quand on compare la première de la première liste au fils à la position 0 du noeud NULL on tombe sur 
 une valeur forcément différente de la lettre et donc on va cosntruire la première liste sur le fils 1 au lieu du fils 0.*/

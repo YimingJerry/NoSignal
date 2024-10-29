@@ -10,7 +10,7 @@ typedef struct {
 typedef struct
 {
     int premier;
-    int second
+    int second;
 }Couple;
 
 typedef struct 
@@ -18,16 +18,6 @@ typedef struct
     Couple begin;
     Couple dest;
 }Place;
-
-int GetLength(char* words[])
-{
-    size_t i =0;
-    while(words[i] != NULL)
-    {
-        i++;
-    }
-    return i;
-}
 
 int CheckWord(char* first, char* second)
 {
@@ -43,129 +33,86 @@ int CheckWord(char* first, char* second)
     return 1;
 }
 
-int WordStartWithLetter(char* words[], char let)
+int WordStartWith(char* words, char* part, size_t size)
 {
-    size_t len = (sizeof(words)/sizeof(words[0])) ;
-    for(size_t i = 0; i < len + 1; i++)
-    {
-        if (words[i][0] == let)
-        {
-            return 1;
-        }
-    }
-    return 0;
-}
-
-void Delete(char* words[], char* word)
-{
-    char* new[(sizeof(words)/sizeof(words[0]))-1];
-    int wlen = strlen(word);
-    size_t my_i = 0;
-    for(size_t i = 0; i < (sizeof(words)/sizeof(words[0])); i++)
-    {
-        if (word != words[i])
-        {
-            new[my_i] = words[i];
-        }
-        else
-        {
-            new[my_i] = NULL;
-        }
-        my_i +=1;
-    }
-    words = realloc(words,(sizeof(words)/sizeof(words[0]))-1);
-    words = new;
-}
-
-int WordStartWith(char* words[], char* part, size_t size)
-{
-    size_t len = (sizeof(words)/sizeof(words[0])) + 1;
+    size_t len = strlen(words);
     if(size == 0)
     {
         return 1;
     }
-
-    for(size_t i = 0; i < len; i++)
+    
+    int l = 0;
+    for (size_t j = 0; j < size; j++)
     {
-        if (strlen(words[i]) >= size)
+        if(words[j] != part[j])
         {
-            int l = 0;
-            for (size_t j = 0; j < size; j++)
-            {
-                if(words[i][j] != part[j])
-                {
-                    break;
-                }
-                else
-                {
-                    l = j;
-                }
-            }
-
-            if (l + 1 == size)
-            {
-                return 1;
-            }
+            break;
+        }
+        else
+        {
+            l = j;
         }
     }
+
+    if (l + 1 == size)
+    {
+        return 1;
+    }
+
     return 0;
 }
 
-int GetTheWord(char* words[], char* sub, size_t size)
+int GetTheWord(char* words, char* sub, size_t size)
 {
     if(size == 0)
     {
         return 0;
     }
-
-    size_t len = (sizeof(words)/sizeof(words[0])) + 1;
-    for(size_t i = 0; i < len ; i++)
+        
+    size_t l = strlen(words);
+    int fault = 0;
+    for (size_t j = 0; j < l; j++)
     {
-        size_t l = strlen(words[i]);
-        int fault = 0;
-        for (size_t j = 0; j < l; j++)
+        if(words[j] != sub[j])
         {
-            if(words[i][j] != sub[j])
-            {
-                fault = 0;
-                break;
-            }
-            else
-            {
-                fault = 1;
-            }
+            fault = 0;
+            break;
         }
-
-        if (fault == 1)
+        else
         {
-            return 1;
+            fault = 1;
         }
     }
+
+    if (fault == 1)
+    {
+        return 1;
+    }
+
     return 0;
 }
 
 
 
-void check(char* grid[], char* words[], size_t i, size_t j, int direct1, int direct2, Place moves[],size_t index)
+void check(char* grid[], char* words, size_t i, size_t j, int direct1, int direct2, Place moves)
 {
     size_t n = sizeof(grid)/sizeof(grid[0]);
     size_t m = strlen(grid[0]);
     size_t start_i = i;
     size_t start_j = j;
-    char* subString = malloc(m * sizeof(char));
+    size_t len = strlen(words);
+    char* subString = (char*)malloc(m * sizeof(char));
     size_t subSize = 0;
     while(0<= i && 0 <= j && i <= n + 1 &&  j < m && WordStartWith(words, subString,subSize))
     {
         subString[subSize] = grid[i][j];
-        if(GetTheWord(words,subString, subSize))
+        if(WordStartWith(words,subString, len))
         {
-            moves[index].begin.premier = start_i; 
-            moves[index].begin.second = start_j;
-            moves[index].dest.premier = i;
-            moves[index].dest.second = j;
-            index += 1;
+            moves.begin.premier = start_i; 
+            moves.begin.second = start_j;
+            moves.dest.premier = i;
+            moves.dest.second = j;
             printf("%d %d %d %d\n",start_i, start_j, i ,j);
-            Delete(words, subString);
             free(subString);
             return;
         }
