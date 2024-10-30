@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Neuron.h"
-
-float neurone_artificiel(float* X[],float y,float learning_rate,size_t n_iter)
+// need fonction add pour grid ou liste de mots.
+float neurone_artificiel(float* X[],float y,float learning_rate,size_t n_iter) // le retourn A 
 {
     CoupleOfWAndb Wb = Initialisation(X);
 

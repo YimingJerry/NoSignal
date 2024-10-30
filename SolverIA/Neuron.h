@@ -25,7 +25,7 @@ float** BroadCast(float y)
     
 }
 
-float dot(float* X[], float* B[])
+float dot(float* X[], float* B[]) // ----------> retourne une matrice pas un float
 {
     float result = 0;
     size_t length = sizeof(X[0]);
@@ -48,7 +48,7 @@ float dot(float* X[], float* B[])
 CoupleOfWAndb Initialisation(float* X[])
 {
     float** W; // W = np.random.randn(X.shape[1],1)
-    float b = 0; // np.random.randn(1)
+    float b = 0; // np.random.randn(1) -----------> 1
     CoupleOfWAndb result;
     result.W = W;
     result.b = b;
@@ -60,14 +60,14 @@ float model(float* X[], float* W[], float b)
     return 1 / (1 + expf(-Z));
 }
 
-float LogLoss(float A,float y) 
+float LogLoss(float A,float y)  // ----------> pas utile pour le multicouche
 {
     return - 1 / (sizeof(y)) * (y * logf(A) - (1 - y) * logf(1-A)); 
 }
 
-CoupleOfFloat Gradients(float A,float* X[],float y) 
+CoupleOfFloat Gradients(float A,float* X[],float y)  // ---------------> fallait boucler par couche
 {
-    float dW = 1 / (sizeof(y)) * (dot(Transposed(X), BroadCast(A - y))); 
+    float dW = 1 / (sizeof(y)) * (dot(Transposed(X), BroadCast(A - y))); // ---------> mauvaise formule
     float db = 1 / (sizeof(y)) * (A - y); 
     CoupleOfFloat result;
     result.first = dW;
