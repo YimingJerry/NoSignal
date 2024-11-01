@@ -2,18 +2,24 @@
 #include <stdlib.h>
 #include "Neuron.h"
 // need fonction add pour grid ou liste de mots.
-float neurone_artificiel(float* X[],float y,float learning_rate,size_t n_iter) // le retourn A 
+int neurone_artificiel(float* X,float** y, size_t nbCouche, float n,float learning_rate, size_t n_iter) // le retourn A 
 {
-    CoupleOfWAndb Wb = Initialisation(X);
+    float* hiddenLayer;
+    for(size_t i = 1; i < nbCouche+1; i++)
+    {
+        hiddenLayer[i] = n;
+    }
 
-    float* Loss;
+    hiddenLayer[0] = sizeof(X);
+    hiddenLayer[nbCouche+1] = sizeof(y) / sizeof(y[0]);
+    Dico** parametre = Initialisation(hiddenLayer);
 
     for(size_t i = 0; i < n_iter; i++)
     {
-        float A = model(X, Wb.W, Wb.b);
-        Loss[i] = LogLoss(A,y);
-        CoupleOfFloat gra = Gradients(A, X, y);
-        Wb = Update(gra, Wb.W, Wb.b, learning_rate);
+        WorB* activation = ForwardPropagation(X, parametre);
+        Dico* Gradients = BackPropagation(y,activation,parametre);
+        parametre = Update(Gradients, parametre, learning_rate);
     }
-}
 
+    return Predict(X, parametre);
+}
