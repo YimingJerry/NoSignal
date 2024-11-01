@@ -1,6 +1,7 @@
 #include "Opti_Tree.c"
 #include <stdio.h>
 #include <stdlib.h>
+#include "Neuron.h"
 
 int main()
 {
