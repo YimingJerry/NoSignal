@@ -23,3 +23,11 @@ int neurone_artificiel(float* X,float** y, size_t nbCouche, float n,float learni
 
     return Predict(X, parametre);
 }
+int main()
+{
+    float* X = {(0,0),(1,0),(0,1),(1,1)};
+    float** y = {(0),(1),(1),(0)};
+
+    return neurone_artificiel(X,y,2,3,0.01,100);
+
+}
