@@ -3,8 +3,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-Place solve(char* grid[], char* words)
+Place solve(char** grid, char* words)
 {
+    /*char** grid = GetTextInfo(filename);
+    if(grid == NULL)
+    {
+        return ;
+    }*/
     int directions[8][2] = {{0,1},{1,1},{1,0},{1,-1},{0,-1},{-1,-1},{-1,0},{-1,1}};
     Place moves;
     //printf("%d\n", (sizeof(grid)/sizeof(grid[0]) + 1));

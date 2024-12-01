@@ -1,17 +1,22 @@
 #include "Opti_Tree.c"
 #include <stdio.h>
 #include <stdlib.h>
-#include "Neuron.h"
+
 
 int main()
 {
-    char* grid[3] = 
+    /*char* grid[3] = 
     {
         "LIL",
         "XUV",
         "WTM"
-    };
+    };*/
 
+    char** grid = GetTextInfo("Grid.txt");
+    if(grid == NULL)
+    {
+        return 1;
+    }
     char* words = "LX";
 
     /*printf("\n");

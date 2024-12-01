@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 typedef struct {
     int premier;
     int second;
@@ -18,6 +19,52 @@ typedef struct
     Couple begin;
     Couple dest;
 }Place;
+
+
+char** GetTextInfo(const char* filename)
+{
+    FILE* file = fopen(filename, "r");
+    if(file == NULL)
+    {
+        //err(EXIT_FAILURE, "File doesn't exist or filename incorrect.");
+        return NULL;
+    }
+
+    // contenu et longueur du fichier texte
+    fseek(file, 0, SEEK_END);
+    long fileSize = ftell(file);
+    rewind(file);
+    char* Buffer[fileSize];
+    fclose(file);
+
+    // avoir la longueur d'une ligne
+    size_t lineSize = 0;
+    while(Buffer[lineSize] != '\n')
+    {
+        lineSize++;
+    }
+
+    char* result[lineSize];
+    size_t Pos = 0;
+    
+    while(Pos < fileSize)
+    {
+        size_t i = 0;
+        while(i < lineSize)
+        {
+            result[i] = Buffer[Pos];
+            printf("%c", Buffer[Pos]);
+            i++;
+            Pos++;
+        }
+        *result += 1;
+        printf("\n");
+        Pos++;
+    }
+
+    return result;
+}
+
 
 int CheckWord(char* first, char* second)
 {
