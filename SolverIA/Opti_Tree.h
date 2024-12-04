@@ -3,22 +3,20 @@
 #include <string.h>
 
 
-typedef struct {
-    int premier;
-    int second;
-} Directions;
-
 typedef struct
 {
     int premier;
     int second;
 }Couple;
 
-typedef struct 
+
+typedef struct
 {
     Couple begin;
     Couple dest;
 }Place;
+
+
 
 
 char** GetTextInfo(const char* filename)
@@ -30,40 +28,49 @@ char** GetTextInfo(const char* filename)
         return NULL;
     }
 
+
     // contenu et longueur du fichier texte
     fseek(file, 0, SEEK_END);
     long fileSize = ftell(file);
     rewind(file);
     char* Buffer[fileSize];
-    fclose(file);
 
-    // avoir la longueur d'une ligne
-    size_t lineSize = 0;
-    while(Buffer[lineSize] != '\n')
+
+   
+    int lineSize = 0;
+    while((char*)fgetc(file) != '\n')
     {
         lineSize++;
     }
 
+
+    rewind(file);
     char* result[lineSize];
     size_t Pos = 0;
-    
-    while(Pos < fileSize)
+   
+    while(Pos < fileSize-1)
     {
         size_t i = 0;
-        while(i < lineSize)
+        char* value = (char*)fgetc(file);
+        while(Pos < fileSize-1 && i < lineSize && value != '\n')
         {
-            result[i] = Buffer[Pos];
-            printf("%c", Buffer[Pos]);
+            result[i] = value;
+            printf("%c", result[i]);
             i++;
             Pos++;
+            value = (char*)fgetc(file);
         }
         *result += 1;
         printf("\n");
         Pos++;
     }
 
+
+    fclose(file);
     return result;
 }
+
+
 
 
 int CheckWord(char* first, char* second)
@@ -77,8 +84,10 @@ int CheckWord(char* first, char* second)
         }
     }
 
+
     return 1;
 }
+
 
 int WordStartWith(char* words, char* part, size_t size)
 {
@@ -87,7 +96,7 @@ int WordStartWith(char* words, char* part, size_t size)
     {
         return 1;
     }
-    
+   
     int l = 0;
     for (size_t j = 0; j < size; j++)
     {
@@ -101,13 +110,16 @@ int WordStartWith(char* words, char* part, size_t size)
         }
     }
 
+
     if (l + 1 == size)
     {
         return 1;
     }
 
+
     return 0;
 }
+
 
 int GetTheWord(char* words, char* sub, size_t size)
 {
@@ -115,7 +127,7 @@ int GetTheWord(char* words, char* sub, size_t size)
     {
         return 0;
     }
-        
+       
     size_t l = strlen(words);
     int fault = 0;
     for (size_t j = 0; j < l; j++)
@@ -131,13 +143,18 @@ int GetTheWord(char* words, char* sub, size_t size)
         }
     }
 
+
     if (fault == 1)
     {
         return 1;
     }
 
+
     return 0;
 }
+
+
+
 
 
 
@@ -155,7 +172,7 @@ void check(char* grid[], char* words, size_t i, size_t j, int direct1, int direc
         subString[subSize] = grid[i][j];
         if(WordStartWith(words,subString, len))
         {
-            moves.begin.premier = start_i; 
+            moves.begin.premier = start_i;
             moves.begin.second = start_j;
             moves.dest.premier = i;
             moves.dest.second = j;
@@ -166,10 +183,11 @@ void check(char* grid[], char* words, size_t i, size_t j, int direct1, int direc
         i += direct1;
         j += direct2;
         subSize += 1;
-        //printf("%d\n",WordStartWith(words, subString,subSize)); 
+        //printf("%d\n",WordStartWith(words, subString,subSize));
     }
     free(subString);
 }
+
 
 /*
 typedef struct Node {
@@ -179,8 +197,10 @@ typedef struct Node {
 } Node;
 
 
+
+
 // Fonction pour créer un nouveau nœud
-Node* newNode(char letter) 
+Node* newNode(char letter)
 {
     Node* node = (Node*)malloc(sizeof(Node));
     node->letter = letter;
@@ -190,6 +210,7 @@ Node* newNode(char letter)
     node->isWordEnd = 0;
     return node;
 }
+
 
 // Fonction pour insérer un mot dans l'arbre
 void insertWord(Node* root, char* word) {
@@ -203,3 +224,4 @@ void insertWord(Node* root, char* word) {
     }
     current->isWordEnd = 1; // Marquer la fin du mot
 }*/
+
