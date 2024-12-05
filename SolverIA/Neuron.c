@@ -15,12 +15,12 @@ int neurone_artificiel(float* X,float** y, size_t nbCouche, float n,float learni
 
     hiddenLayer[0] = sizeof(X);
     hiddenLayer[nbCouche+1] = sizeof(y) / sizeof(y[0]);
-    Dico** parametre = Initialisation(hiddenLayer);
+    Dico** parametre = (Dico**)Initialisation(hiddenLayer);
 
 
     for(size_t i = 0; i < n_iter; i++)
     {
-        WorB* activation = ForwardPropagation(X, (Dico**)parametre);
+        WorB* activation = ForwardPropagation(X, parametre);
         Dico** Gradients = BackPropagation(y,activation, parametre);
         parametre = Update(Gradients, *parametre, learning_rate);
     }
@@ -28,14 +28,12 @@ int neurone_artificiel(float* X,float** y, size_t nbCouche, float n,float learni
 
     return Predict(X, *parametre);
 }
+
 int main()
 {  
-   
     float* X = {0,0,1,0,0,1,1,1};
     float** y = {0,1,1,0};
 
 
     return neurone_artificiel(X,y,2,3,0.01,100);
-
-
 }

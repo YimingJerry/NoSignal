@@ -5,7 +5,7 @@
 
 int main()
 {
-    /*float mat[2][4] = {
+    float mat[2][4] = {
         {1,1,1,1},
         {1,1,1,1}
     };
@@ -14,21 +14,23 @@ int main()
     int x = (sizeof(mat) / sizeof(mat[0]));
     printf("ligne = %d ", x);
     printf("\n");
-    printf("column = %d ", ((sizeof(mat)) / sizeof(float))/x);*/
+    printf("column = %d ", ((sizeof(mat)) / sizeof(float))/x);
 
 
+    /*
     char** val =  GetTextInfo("Grid.txt");
 
 
     size_t len = (sizeof(val) + 1);
     printf("%d\n", len);
     printf("%d x", strlen(val[0]));
+    */
+
     /*for(size_t i = 0; i < len; i++)
     {
 
 
     }*/
-
 
     /*
     char* grid[3] =

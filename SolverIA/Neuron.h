@@ -153,7 +153,7 @@ float** Sum(float* A[], int axis)
 }
 
 
-Dico** Initialisation(float* X) // X -> c'est une liste
+Dico* Initialisation(float* X) // X -> c'est une liste
 {
     Dico* Wb;
     size_t C = sizeof(X) / sizeof(float);
@@ -166,13 +166,22 @@ Dico** Initialisation(float* X) // X -> c'est une liste
         Wb[i].paraB.key = 'b' + (char*)i;
         Wb[i].paraB.value = CreateMatrice(X[i],1);
     }
-    return &Wb;
+    return Wb;
 }
 
 
 WorB* ForwardPropagation(float* X, Dico** Wb)
 {
     size_t C = sizeof(Wb) / 2;
+/*
+    printf("%d ",C);
+    size_t i =0;
+    while(Wb[i] != NULL)
+    {
+        printf("%d ", i);
+        i++;
+    }
+*/
     WorB act[C+1] ;
     act[0].key = (char*)"A0";
     act[0].value = (float**)X;
@@ -185,7 +194,6 @@ WorB* ForwardPropagation(float* X, Dico** Wb)
         float** val = Wb[i]->paraW.value;
         float** b = Wb[i]->paraB.value;
         float** A = (float**) act[i-1].value;
-
 
         float** Z = Addition(dot(val, A), b);
 
