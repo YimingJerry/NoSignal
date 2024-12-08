@@ -4,14 +4,16 @@
 #include <string.h>
 
 
-Place solve(char** grid, char* words)
+
+
+Place solve(char* grid[], char* words)
 {
     //char** grid = GetTextInfo(filename);
     int directions[8][2] = {{0,1},{1,1},{1,0},{1,-1},{0,-1},{-1,-1},{-1,0},{-1,1}};
     Place moves;
     //printf("%d\n", (sizeof(grid)/sizeof(grid[0]) + 1));
     size_t len = (sizeof(grid)/sizeof(grid[0])) + 1;
-    size_t width = sizeof(grid)/len;
+    size_t width = sizeof(grid);
     for(size_t i =0; i <= len; i++)
     {
         //printf("%d\n",(sizeof(grid)/sizeof(grid[0])) + 1);
@@ -19,7 +21,7 @@ Place solve(char** grid, char* words)
         for(size_t j = 0; j < width ; j++)
         {
             //printf("%d + %c\n", WordStartWithLetter(words, grid[i][j]), grid[i][j]);
-            if(WordStartWith(words, *grid,0))
+            if(WordStartWith(words, grid[i],0))
             {
                 for(size_t x = 0; x < 8; x++)
                 {
@@ -30,8 +32,14 @@ Place solve(char** grid, char* words)
     }
 
 
+
+
     return moves;
 }
+
+
+
+
 
 
 
@@ -55,9 +63,13 @@ Node* Opti_Tree(Node* Tree, char** word_list)
     }
 
 
+
+
    Node* optitree = newNode('\0');
     Node* optitree2 = optitree;
     //parcourir chaque mot de word_list pour utliser chaques lettre des mots
+
+
 
 
 <<<<<<< HEAD
@@ -103,6 +115,8 @@ Node* Opti_Tree(Node* Tree, char** word_list)
             }
 
 
+
+
 <<<<<<< HEAD
             //rajouter un cas si optitree->children[index_children] == NULL alors mettre le reste du mot sur la même branche (exemple concret expliqué ligne 148: BELL et BELLONG)
             else if(optitree->children[index_children] == NULL)
@@ -145,6 +159,8 @@ Node* Opti_Tree(Node* Tree, char** word_list)
 =======
 
 
+
+
             else if( *((word_list[i])+j) != optitree->children[index_children]->letter )/*vérifier si on doit changer de branche, c'est-à-dire si
             la lettre du mot et le noeud auquel on la compare sont différents*/
             /*{
@@ -156,6 +172,8 @@ Node* Opti_Tree(Node* Tree, char** word_list)
                         optitree->isWordEnd = 1;
                     }
             /*}
+
+
 
 
 >>>>>>> 0f9ce7f64bbb2bddb8ba59f52d5dd7e15ea0a0ac
@@ -175,8 +193,18 @@ Node* Opti_Tree(Node* Tree, char** word_list)
             }
 
 
+
+
         }
     }
+
+
+
+
+
+
+
+
 
 
 
@@ -208,6 +236,8 @@ Node* newNode(char letter)
 }
 
 
+
+
 // Fonction pour insérer un mot dans l'arbre
 void insertWord(Node* root, char* word) {
     Node* current = root;
@@ -222,7 +252,23 @@ void insertWord(Node* root, char* word) {
 }
 
 
+
+
 //Fonction qui supprime un mot de l'arbre
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -241,6 +287,8 @@ Node* Opti_Tree(Node* Tree, char** word_list) {
     Node* root = newNode('\0');
 
 
+
+
     for (size_t i = 0; word_list[i] != NULL; i++) {
         Node* current = root;
         for (size_t j = 0; j < strlen(word_list[i]); j++) {
@@ -254,8 +302,12 @@ Node* Opti_Tree(Node* Tree, char** word_list) {
     }
 
 
+
+
 <<<<<<< HEAD
 }
+
+
 
 
 int main()
@@ -264,21 +316,31 @@ int main()
     Node* racine_null = Tree_non_opti;
 
 
+
+
     Tree_non_opti->children[0] = newNode('B');
     Tree_non_opti = Tree_non_opti->children[0];
+
+
 
 
     Tree_non_opti->children[0] = newNode('E');
     Tree_non_opti = Tree_non_opti->children[0];
 
 
+
+
     Tree_non_opti->children[0] = newNode('L');
     Tree_non_opti = Tree_non_opti->children[0];
+
+
 
 
     Tree_non_opti->children[0] = newNode('L');
     Tree_non_opti = Tree_non_opti->children[0];
     Tree_non_opti->isWordEnd = 1;
+
+
 
 
     //deuxieme mot
@@ -287,12 +349,18 @@ int main()
     Tree_non_opti = Tree_non_opti->children[0];
 
 
+
+
     Tree_non_opti->children[0] = newNode('E');
     Tree_non_opti = Tree_non_opti->children[0];
 
 
+
+
     Tree_non_opti->children[0] = newNode('I');
     Tree_non_opti = Tree_non_opti->children[0];
+
+
 
 
     Tree_non_opti->children[0] = newNode('N');
@@ -300,12 +368,20 @@ int main()
     Tree_non_opti->isWordEnd = 1;
 
 
+
+
     Tree_non_opti = racine_null;
+
+
 
 
     char* list[] = { "BELL","BEIN" };
     Affichage(Tree_non_opti);
     Affichage(Opti_Tree(Tree_non_opti,list));
+
+
+
+
 
 
 
@@ -317,7 +393,11 @@ int main()
 */
 
 
+
+
 /*
+
+
 
 
 void Affichage(Node* tree, char* buffer, int depth) {
@@ -326,12 +406,18 @@ void Affichage(Node* tree, char* buffer, int depth) {
     }
 
 
+
+
     // Débogage : Afficher la lettre actuelle
     printf("Visiting node: %c\n", tree->letter);
 
 
+
+
     // Ajouter la lettre actuelle au buffer
     buffer[depth] = tree->letter;
+
+
 
 
     // Si c'est la fin d'un mot, afficher le mot
@@ -339,6 +425,8 @@ void Affichage(Node* tree, char* buffer, int depth) {
         buffer[depth + 1] = '\0'; // Terminer la chaîne
         printf("%s\n", buffer); // Afficher le mot
     }
+
+
 
 
     // Parcourir les enfants
@@ -352,18 +440,30 @@ void Affichage(Node* tree, char* buffer, int depth) {
 
 
 
+
+
+
+
+
+
 int main() {
     char* words[] = { "BELL", "BEIN", "BELLONG", NULL };
+
+
 
 
     // Création d'un Trie avec Opti_Tree
     Node* optimized_tree = Opti_Tree(NULL, words);
 
 
+
+
     // Afficher les mots de l'arbre optimisé
     char buffer[100];
     printf("Mots dans l'arbre optimisé :\n");
     Affichage(optimized_tree, buffer, 0);
+
+
 
 
     // Création d'un Trie avec insertWord
@@ -373,9 +473,13 @@ int main() {
     }
 
 
+
+
     // Afficher les mots de l'arbre construit avec insertWord
     printf("\nMots dans l'arbre construit avec insertWord :\n");
     Affichage(insert_tree, buffer, 0);
+
+
 
 
     return 0;
@@ -390,11 +494,23 @@ une valeur forcément différente de la lettre et donc on va cosntruire la premi
 
 
 
+
+
+
+
+
+
 /*Explication:
 Si on a le mot BELL qui est déjà implémenté dans l'arbre alors on voudrait que les lettres O,N,G de BELLONG soit implementé sur
 la même branche c'est-à-dire le fils 0 du dernier L. Donc si le fils du noeud est NULL, c'est forcément que je suis à la fin
 du mot donc je mets le reste du mot sur le fils 0 de chaque noeud.*/
 
 
+
+
  
+
+
+
+
 

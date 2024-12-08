@@ -2,13 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-
 typedef struct
 {
     int premier;
     int second;
 }Couple;
-
 
 typedef struct
 {
@@ -29,6 +27,8 @@ char** GetTextInfo(const char* filename)
     }
 
 
+
+
     // contenu et longueur du fichier texte
     fseek(file, 0, SEEK_END);
     long fileSize = ftell(file);
@@ -38,10 +38,12 @@ char** GetTextInfo(const char* filename)
 
    
     int lineSize = 0;
-    while((char*)fgetc(file) != '\n')
+    while(fgetc(file) != '\n')
     {
         lineSize++;
     }
+
+
 
 
     rewind(file);
@@ -66,9 +68,15 @@ char** GetTextInfo(const char* filename)
     }
 
 
+
+
     fclose(file);
     return result;
 }
+
+
+
+
 
 
 
@@ -85,8 +93,12 @@ int CheckWord(char* first, char* second)
     }
 
 
+
+
     return 1;
 }
+
+
 
 
 int WordStartWith(char* words, char* part, size_t size)
@@ -111,14 +123,20 @@ int WordStartWith(char* words, char* part, size_t size)
     }
 
 
+
+
     if (l + 1 == size)
     {
         return 1;
     }
 
 
+
+
     return 0;
 }
+
+
 
 
 int GetTheWord(char* words, char* sub, size_t size)
@@ -144,14 +162,24 @@ int GetTheWord(char* words, char* sub, size_t size)
     }
 
 
+
+
     if (fault == 1)
     {
         return 1;
     }
 
 
+
+
     return 0;
 }
+
+
+
+
+
+
 
 
 
@@ -189,12 +217,18 @@ void check(char* grid[], char* words, size_t i, size_t j, int direct1, int direc
 }
 
 
+
+
 /*
 typedef struct Node {
     char letter;
     struct Node* children[26]; // Tableau pour stocker les enfants
     int isWordEnd; // Indique si le nœud est la fin d'un mot
 } Node;
+
+
+
+
 
 
 
@@ -212,6 +246,8 @@ Node* newNode(char letter)
 }
 
 
+
+
 // Fonction pour insérer un mot dans l'arbre
 void insertWord(Node* root, char* word) {
     Node* current = root;
@@ -224,4 +260,8 @@ void insertWord(Node* root, char* word) {
     }
     current->isWordEnd = 1; // Marquer la fin du mot
 }*/
+
+
+
+
 
